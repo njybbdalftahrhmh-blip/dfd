@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahma | Content & Design Strategist</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #EAE3D2;
+            --primary: #CC3F2B; /* Motown Red/Orange */
+            --secondary: #F4A261;
+            --black: #1a1a1a;
+            --white: #F9F9F9;
+            --border: 2px solid var(--black);
+        }
+
+        /* Custom Cursor for that "Vibe" feel */
+        #cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            font-family: 'Public Sans', sans-serif;
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* Grainy Overlay Texture */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%;
+            border-bottom: var(--border);
+            background: var(--bg);
+            position: sticky;
+            top: 0; z-index: 100;
+        }
+
+        .brand { font-family: 'Archivo Black', sans-serif; font-size: 1.8rem; text-transform: lowercase; color: var(--primary); }
+        
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: var(--black); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: var(--border);
+        }
+
+        .hero-text {
+            padding: 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: var(--border);
+        }
+
+        .hero-text h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-image {
+            background: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=2070&auto=format&fit=crop') center/cover;
+            filter: grayscale(1) contrast(1.2);
+            position: relative;
+        }
+
+        /* Floating UI Elements from reference */
+        .badge {
+            position: absolute;
+            background: var(--secondary);
+            border: var(--border);
+            padding: 15px;
+            font-family: 'Space Mono', monospace;
+            box-shadow: 8px 8px 0px var(--black);
+            max-width: 200px;
+        }
+
+        /* --- CONTENT SECTION --- */
+        .section-header {
+            padding: 60px 5%;
+            background: var(--black);
+            color: var(--bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .marquee-container {
+            border-bottom: var(--border);
+            overflow: hidden;
+            padding: 20px 0;
+            background: var(--primary);
+        }
+
+        .marquee-inner {
+            display: flex;
+            white-space: nowrap;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 4rem;
+            color: var(--white);
+            gap: 50px;
+        }
+
+        /* --- WORK GRID --- */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .work-item {
+            border-right: var(--border);
+            border-bottom: var(--border);
+            padding: 60px;
+            transition: background 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-item:hover { background: var(--secondary); }
+        .work-item:nth-child(even) { border-right: none; }
+
+        .work-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border: var(--border);
+            margin-top: 30px;
+            filter: sepia(0.3);
+        }
+
+        .btn-waitlist {
+            background: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border: var(--border);
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 6px 6px 0px var(--black);
+            transition: 0.2s;
+        }
+
+        .btn-waitlist:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0px var(--black); }
+
+        /* Mobile Adjustments */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; height: auto; }
+            .hero-text { border-right: none; border-bottom: var(--border); padding: 60px 5%; }
+            .hero-image { height: 400px; }
+            .work-grid { grid-template-columns: 1fr; }
+            .work-item:nth-child(even) { border-right: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+
+    <nav>
+        <div class="brand">rahma: strategist</div>
+        <div class="nav-links">
+            <a href="#">Projects</a>
+            <a href="#">Archive</a>
+            <a href="#">About</a>
+        </div>
+        <button class="btn-waitlist" style="padding: 10px 20px; font-size: 0.7rem;">Join Waitlist</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <p class="tag" style="margin-bottom: 20px;">[ EST. 2026 ]</p>
+            <h1 class="split-text">DIGITAL CONTENT ARCHIVE</h1>
+            <p style="font-family: 'Space Mono';">Building high-end interactive narratives through research-informed workflows.</p>
+        </div>
+        <div class="hero-image">
+            <div class="badge" style="top: 20%; left: -10%;">
+                YOUR ARCHIVE, REIMAGINED. →
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee-container">
+        <div class="marquee-inner">
+            <span>VIBE CODING ✦ CONTENT STRATEGY ✦ DESIGN ANALYTICS ✦ VIBE CODING ✦ CONTENT STRATEGY ✦ </span>
+            <span>VIBE CODING ✦ CONTENT STRATEGY ✦ DESIGN ANALYTICS ✦ VIBE CODING ✦ CONTENT STRATEGY ✦ </span>
+        </div>
+    </div>
+
+    <section class="work-grid">
+        <div class="work-item">
+            <span class="tag">STRATEGY / 01</span>
+            <h2>Motown Digital Library</h2>
+            <p>Creating a seamless UX for historical media archives using modern RAG pipelines.</p>
+            <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070&auto=format&fit=crop" alt="Work">
+        </div>
+        <div class="work-item">
+            <span class="tag">DESIGN / 02</span>
+            <h2>Y2K Aesthetic Engine</h2>
+            <p>Generative UI components that respond to user movement and device orientation.</p>
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" alt="Work">
+        </div>
+    </section>
+
+    <footer style="padding: 100px 5%; background: var(--black); color: var(--bg); text-align: center;">
+        <h2 style="font-family: 'Archivo Black'; font-size: 3rem;">LET'S WORK.</h2>
+        <p style="margin-top: 20px; font-family: 'Space Mono';">rahma@content.strategist</p>
+    </footer>
+
+    <script>
+        // 1. Smooth Scrolling (Lenis)
+        const lenis = new Lenis();
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 2. Custom Cursor Movement
+        const cursor = document.querySelector("#cursor");
+        window.addEventListener("mousemove", (e) => {
+            gsap.to(cursor, {
+                x: e.clientX - 10,
+                y: e.clientY - 10,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+
+        // 3. Hero Text Entrance (Split Animation)
+        gsap.from(".hero-text h1", {
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power4.out",
+            delay: 0.5
+        });
+
+        // 4. Parallax Image Effect
+        gsap.to(".hero-image", {
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            },
+            backgroundPosition: "50% 100%",
+            ease: "none"
+        });
+
+        // 5. Infinite Marquee Speed Change on Scroll
+        let marquee = gsap.to(".marquee-inner", {
+            xPercent: -50,
+            repeat: -1,
+            duration: 10,
+            ease: "none"
+        });
+
+        gsap.to(marquee, {
+            scrollTrigger: {
+                trigger: ".marquee-container",
+                scrub: 0.5
+            },
+            timeScale: 3
+        });
+
+        // 6. Work Items Reveal
+        gsap.utils.toArray(".work-item").forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 90%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "expo.out"
+            });
+        });
+    </script>
+</body>
+</html>

@@ -3,724 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بورتفوليو إبداعي | صانع محتوى</title>
-    
+    <title>Borcelle Florist | بورتفوليو احترافي</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Syne:wght@400..800&display=swap" rel="stylesheet">
     
     <style>
-        /* =====================================================
-           🎨 CUSTOMIZE ME — قسم التخصيص السهل
-           ===================================================== */
         :root {
-            --accent: #6C63FF;         /* اللون الأساسي الزاهي */
-            --bg: #070B14;            /* خلفية عميقة (Deep Navy) */
-            --surface: #0D1117;       /* لون البطاقات */
-            --text: #f0f0f0;          /* لون النص الأساسي */
-            --text-muted: #8B949E;    /* لون النص الثانوي */
-            --font-main: 'Tajawal', sans-serif;
-            --container-max: 1200px;
-            --transition-smooth: 600ms cubic-bezier(0.22, 1, 0.36, 1);
+            --primary-pink: #ff00ff;
+            --dark-navy: #120d2d;
+            --accent-green: #00ff66;
+            --soft-purple: #e0d7ff;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* =====================================================
-           تنسيقات التأسيس (Reset)
-           ===================================================== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Syne', sans-serif;
+        }
+
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: var(--font-main);
+            background-color: var(--soft-purple);
+            color: var(--dark-navy);
             overflow-x: hidden;
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
-        ul { list-style: none; }
-        a { text-decoration: none; color: inherit; }
-
-        /* حاوية المحتوى */
-        .container {
-            max-width: var(--container-max);
-            margin: 0 auto;
-            padding: 0 5%;
         }
 
-        /* =====================================================
-           Navigation - بار التنقل
-           ===================================================== */
-        nav {
-            position: fixed;
-            top: 0; width: 100%; z-index: 2000;
-            padding: 25px 0;
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; }
-        .logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a { font-weight: 500; transition: 0.3s; opacity: 0.7; }
-        .nav-links a:hover { opacity: 1; color: var(--accent); }
-
-        /* القائمة للجوال */
-        .mobile-menu-btn { display: none; cursor: pointer; padding: 5px; }
-
-        /* =====================================================
-           [1] STICKY HERO - قسم البداية السينمائي
-           ===================================================== */
-        .hero-section {
-            position: relative;
-            background: var(--bg);
-        }
-
-        .hero-sticky-panel {
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        /* Grid Background - شبكة الخلفية مثل الصورة */
-        .grid-overlay {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(108, 99, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(108, 99, 255, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            z-index: 2;
-        }
-
-        .typewriter-wrapper {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color: var(--accent);
-            font-weight: 500;
-            min-height: 1.5em;
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            background: var(--accent);
-            margin-right: 5px;
-            animation: blink 0.8s infinite;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* Stacking Cards Section */
-        .stack-container {
-            position: relative;
-            z-index: 5;
-        }
-
-        .stack-card {
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            background: var(--bg);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition-smooth);
-            opacity: 0;
-            transform: scale(0.95);
-        }
-
-        .stack-card.active-sticky {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .stack-content { text-align: center; max-width: 900px; }
-        .stack-content h2 {
-            font-size: clamp(2rem, 6vw, 4rem);
+        h1, h2, .logo {
+            font-family: 'Bricolage Grotesque', sans-serif;
             font-weight: 800;
-            margin-bottom: 20px;
-        }
-        .stack-underline {
-            width: 100px; height: 5px;
-            background: var(--accent);
-            margin: 0 auto;
-            border-radius: 10px;
         }
 
-        /* =====================================================
-           [2] ABOUT SECTION - من أنا
-           ===================================================== */
-        .section { padding: 120px 0; overflow: hidden; }
-
-        .about-layout {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 80px;
-            align-items: center;
+        /* --- 1. Header & Hero Section --- */
+        header {
+            background-color: var(--dark-navy);
+            background-image: url('https://www.transparenttextures.com/patterns/floral-paper.png'); /* Pattern simulation */
+            padding: 20px 5%;
+            color: white;
         }
 
-        .avatar-box {
-            position: relative;
-            width: 320px;
-            height: 320px;
-            margin: 0 auto;
-        }
-
-        .avatar-img {
-            width: 100%; height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--bg);
-            z-index: 10;
-            position: relative;
-            animation: glowPulse 4s infinite ease-in-out;
-        }
-
-        .avatar-fallback {
-            width: 100%; height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), #4e44ff);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 5rem;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(108, 99, 255, 0.2); }
-            50% { box-shadow: 0 0 50px rgba(108, 99, 255, 0.5); }
-        }
-
-        .section-tag { color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 15px; display: block; letter-spacing: 2px; }
-        .section-title { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 30px; position: relative; }
-        .section-title::after {
-            content: ''; position: absolute; bottom: -10px; right: 0;
-            width: 0; height: 4px; background: var(--accent);
-            transition: 0.8s ease;
-        }
-        .reveal.active .section-title::after { width: 80px; }
-
-        .pill-container { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
-        .skill-pill {
-            padding: 10px 25px;
-            background: rgba(108, 99, 255, 0.1);
-            border: 1px solid rgba(108, 99, 255, 0.2);
-            border-radius: 50px;
-            font-weight: 500;
-            transform: scale(0);
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .reveal.active .skill-pill { transform: scale(1); }
-
-        /* =====================================================
-           [3] SERVICES - الخدمات (Marquee)
-           ===================================================== */
-        .marquee-wrapper {
-            margin-top: 50px;
-            overflow: hidden;
-            padding: 20px 0;
-        }
-
-        .marquee-track {
+        nav {
             display: flex;
-            gap: 30px;
-            width: max-content;
-            animation: marquee 40s linear infinite;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-order {
+            background: var(--primary-pink);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 8rem;
+            margin-bottom: 10px;
+            color: var(--soft-purple);
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* --- 2. Marquee (التيكر المتحرك) --- */
+        .marquee {
+            background: var(--primary-pink);
+            color: white;
+            padding: 15px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+            border-top: 2px solid var(--dark-navy);
+            border-bottom: 2px solid var(--dark-navy);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 1.2rem;
         }
 
         @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(50%); } /* RTL direction */
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        /* --- 3. Our Story Section --- */
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 100px 10%;
+            align-items: center;
+            gap: 50px;
+            background: #f4f0ff;
+        }
+
+        .story-content {
+            position: relative;
+        }
+
+        .story-bubble {
+            background: var(--soft-purple);
+            padding: 40px;
+            border-radius: 60% 40% 70% 30% / 40% 50% 50% 60%;
+            border: 2px solid var(--dark-navy);
+            text-align: center;
+        }
+
+        .story-bubble h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--dark-navy);
+        }
+
+        .story-image-container {
+            position: relative;
+            border: 3px solid var(--dark-navy);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 15px 15px 0px var(--primary-pink);
+        }
+
+        .story-image-container img {
+            width: 100%;
+            display: block;
+            filter: saturate(1.2);
+        }
+
+        /* --- 4. Services Grid --- */
+        .services-section {
+            padding: 80px 5%;
+            background: var(--soft-purple);
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
         }
 
         .service-card {
-            background: var(--surface);
-            padding: 50px 40px;
-            border-radius: 20px;
-            width: 380px;
-            border-top: 4px solid var(--accent);
-            transition: 0.4s;
-            flex-shrink: 0;
-        }
-        .service-card:hover { transform: translateY(-15px); background: #161b22; }
-        .service-icon { font-size: 3.5rem; margin-bottom: 25px; display: block; }
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
-        .service-card p { color: var(--text-muted); font-size: 1rem; }
-
-        /* وضع الشبكة عند تفعيل الـ Observer */
-        .services-section.settled .marquee-track {
-            animation: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            width: 100%;
-            transform: none !important;
-        }
-        .services-section.settled .service-card { width: 100%; }
-
-        /* =====================================================
-           [4] PROJECTS - المشاريع (Stacking)
-           ===================================================== */
-        .projects-stack { position: relative; }
-        .project-item {
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            display: flex;
-            align-items: center;
-            background: var(--bg);
-        }
-
-        .project-card {
-            width: 100%;
-            height: 80vh;
-            background: #0D1117;
-            border-radius: 30px;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            background: white;
+            border: 2px solid var(--dark-navy);
+            padding: 40px;
+            border-radius: 15px;
+            transition: var(--transition);
             cursor: pointer;
-        }
-
-        .project-info { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
-        .project-media { background: #161b22; position: relative; overflow: hidden; }
-        .project-media div { 
-            width: 100%; height: 100%; 
-            display: flex; align-items: center; justify-content: center; 
-            font-size: 5rem; background: linear-gradient(135deg, #161b22, #070B14);
-        }
-
-        /* =====================================================
-           [5] EXPERIENCE - الخبرات
-           ===================================================== */
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
             position: relative;
-            padding-right: 50px;
-        }
-        .timeline::after {
-            content: ''; position: absolute; right: 0; top: 0;
-            width: 2px; height: 100%; background: rgba(108, 99, 255, 0.2);
-        }
-        .timeline-item { position: relative; margin-bottom: 60px; }
-        .timeline-dot {
-            position: absolute; right: -56px; top: 8px;
-            width: 14px; height: 14px; background: var(--accent);
-            border-radius: 50%; box-shadow: 0 0 0 6px rgba(108,99,255,0.1);
-        }
-        .time-date { color: var(--accent); font-weight: 800; font-size: 0.9rem; margin-bottom: 5px; display: block; }
-
-        /* =====================================================
-           [6] CONTACT - تواصل معي
-           ===================================================== */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
-        .contact-form { background: var(--surface); padding: 40px; border-radius: 20px; }
-        .input-group { margin-bottom: 25px; }
-        .input-group label { display: block; color: var(--text-muted); margin-bottom: 10px; font-size: 0.9rem; }
-        input, textarea {
-            width: 100%; padding: 18px; background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-            color: #fff; font-family: inherit; font-size: 1rem; transition: 0.3s;
-        }
-        input:focus, textarea:focus { outline: none; border-color: var(--accent); background: rgba(108,99,255,0.05); }
-
-        .btn-main {
-            background: var(--accent);
-            color: #fff; padding: 18px 45px; border: none;
-            border-radius: 12px; font-weight: 700; font-size: 1rem;
-            cursor: pointer; width: 100%; position: relative; overflow: hidden;
-        }
-        .btn-main::before {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%; 
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.6s;
-        }
-        .btn-main:hover::before { left: 100%; }
-
-        /* =====================================================
-           Project Detail Page - صفحة تفاصيل المشروع (SPA)
-           ===================================================== */
-        #project-page {
-            display: none; padding-top: 120px; min-height: 100vh;
-        }
-        .detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
-        .back-link { padding: 12px 25px; background: rgba(255,255,255,0.05); border-radius: 50px; font-weight: 500; }
-        
-        .carousel {
-            position: relative; height: 65vh; border-radius: 30px; overflow: hidden;
-            background: #111; margin-bottom: 50px;
-        }
-        .slide {
-            position: absolute; inset: 0; opacity: 0;
-            transform: translateX(50px); transition: 0.6s var(--transition-smooth);
-            display: flex; align-items: center; justify-content: center; font-size: 4rem;
-        }
-        .slide.active { opacity: 1; transform: translateX(0); }
-        .carousel-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            width: 60px; height: 60px; background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 100; font-size: 1.5rem;
-        }
-        .carousel-btn.next { left: 30px; }
-        .carousel-btn.prev { right: 30px; }
-
-        /* Letter Reveal Effect */
-        .letter { display: inline-block; opacity: 0; transform: translateY(20px); }
-        .active .letter { opacity: 1; transform: translateY(0); transition: 0.4s ease; }
-
-        /* =====================================================
-           Animation Classes - فئات التحريك
-           ===================================================== */
-        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition-smooth); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .reveal-left { transform: translateX(-40px); }
-        .reveal-right { transform: translateX(40px); }
-
-        /* =====================================================
-           Responsiveness - التجاوب مع الأجهزة
-           ===================================================== */
-        @media (max-width: 1024px) {
-            .about-layout, .project-card, .contact-grid { grid-template-columns: 1fr; }
-            .project-card { height: auto; }
-            .project-info { padding: 40px; order: 2; }
-            .project-media { height: 350px; order: 1; }
         }
 
+        .service-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 10px 10px 0px var(--accent-green);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- 5. Why Choose Us (Polaroid Style) --- */
+        .why-us {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 100px 10%;
+            background: #fff;
+            align-items: center;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 15px 15px 60px 15px;
+            border: 1px solid #ddd;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            width: 80%;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .polaroid-caption {
+            font-family: 'Bricolage Grotesque';
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.5rem;
+        }
+
+        /* --- 6. Footer Ticker & Bottom --- */
+        .bottom-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            height: 300px;
+        }
+
+        .gallery-item {
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--dark-navy);
+        }
+
+        footer {
+            background: var(--primary-pink);
+            color: white;
+            text-align: center;
+            padding: 50px;
+            border-top: 4px solid var(--dark-navy);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
+            .hero h1 { font-size: 4rem; }
+            .story-section, .why-us, .services-grid {
+                grid-template-columns: 1fr;
+            }
             .nav-links { display: none; }
-            .mobile-menu-btn { display: block; }
-            .hero-title { font-size: 3.5rem; }
-            .carousel { height: 45vh; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="container nav-content">
-            <a href="#home" class="logo">مـبـدع<span>.</span></a>
+    <header>
+        <nav>
+            <div class="logo">Borcelle Florist</div>
             <ul class="nav-links">
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#about">أنا</a></li>
-                <li><a href="#projects">أعمالي</a></li>
-                <li><a href="#contact">تواصل معي</a></li>
+                <li><a href="#">قصتنا</a></li>
+                <li><a href="#">أعمالنا</a></li>
+                <li><a href="#">خدماتنا</a></li>
+                <li><a href="#">تواصل معنا</a></li>
             </ul>
-            <div class="mobile-menu-btn">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
-            </div>
-        </div>
-    </nav>
+            <a href="#" class="btn-order">اطلب الآن</a>
+        </nav>
 
-    <main id="main-page">
-        
-        <section id="home" class="hero-section">
-            <div class="hero-sticky-panel">
-                <div class="grid-overlay"></div>
-                <div class="container">
-                    <h1 class="hero-title">أنا <span id="owner-name">سكايلر</span></h1>
-                    <div class="typewriter-wrapper">
-                        <span id="typewriter"></span><span class="cursor">|</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="stack-container">
-                <div class="stack-card" id="card-1">
-                    <div class="stack-content">
-                        <h2>أُنتج محتوى يُشعل المشاعر 🎬</h2>
-                        <div class="stack-underline"></div>
-                    </div>
-                </div>
-                <div class="stack-card" id="card-2">
-                    <div class="stack-content">
-                        <h2>أكتب كلمات تبقى في الذاكرة ✍️</h2>
-                        <div class="stack-underline"></div>
-                    </div>
-                </div>
-                <div class="stack-card" id="card-3">
-                    <div class="stack-content">
-                        <h2>أبني حضوراً رقمياً لا يُنسى 📱</h2>
-                        <div class="stack-underline"></div>
-                        <br><br>
-                        <a href="#contact" class="btn-main" style="display:inline-block; width:auto">تحدث معي الآن</a>
-                    </div>
-                </div>
-            </div>
+        <section class="hero">
+            <p>Premium Florist</p>
+            <h1>Borcelle</h1>
+            <a href="#" class="btn-order" style="padding: 15px 40px; font-size: 1rem;">تسوق المجموعة</a>
         </section>
+    </header>
 
-        <section id="about" class="section container reveal">
-            <div class="about-layout">
-                <div class="avatar-box">
-                    <div class="avatar-fallback">✨</div>
-                </div>
-                <div>
-                    <span class="section-tag">قصتي</span>
-                    <h2 class="section-title">شغف بصناعة التأثير</h2>
-                    <p style="font-size: 1.2rem; color: var(--text-muted);">
-                        منذ بدايتي وأنا أؤمن أن المحتوى ليس مجرد منشورات، بل هو جسر يربط بين الأفكار والقلوب. أسعى لتقديم تجربة بصرية وكتابية تجعل من كل علامة تجارية قصة تستحق أن تُروى.
-                    </p>
-                    <div class="pill-container">
-                        <span class="skill-pill" style="transition-delay: 0.1s">إبداعي</span>
-                        <span class="skill-pill" style="transition-delay: 0.2s">منظّم</span>
-                        <span class="skill-pill" style="transition-delay: 0.3s">استراتيجي</span>
-                        <span class="skill-pill" style="transition-delay: 0.4s">شغوف</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="section services-section reveal">
-            <div class="container">
-                <span class="section-tag">خدماتي</span>
-                <h2 class="section-title">كيف يمكنني مساعدتك؟</h2>
-            </div>
-            <div class="marquee-wrapper">
-                <div class="marquee-track" id="marquee-track">
-                    <div class="service-card">
-                        <span class="service-icon">🎬</span>
-                        <h3>إنتاج الفيديو</h3>
-                        <p>صناعة فيديوهات قصيرة واحترافية لمنصات التواصل الاجتماعي بجودة سينمائية.</p>
-                    </div>
-                    <div class="service-card">
-                        <span class="service-icon">✍️</span>
-                        <h3>كتابة المحتوى</h3>
-                        <p>كتابة نصوص إعلانية وسرد قصصي يجذب الجمهور ويبني الثقة.</p>
-                    </div>
-                    <div class="service-card">
-                        <span class="service-icon">📱</span>
-                        <h3>إدارة الحسابات</h3>
-                        <p>بناء استراتيجيات نمو شاملة وزيادة التفاعل بشكل عضوي ومستدام.</p>
-                    </div>
-                    <div class="service-card">
-                        <span class="service-icon">🎬</span>
-                        <h3>إنتاج الفيديو</h3>
-                        <p>صناعة فيديوهات قصيرة واحترافية لمنصات التواصل الاجتماعي بجودة سينمائية.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="section container">
-            <span class="section-tag">أعمالي</span>
-            <h2 class="section-title">مشاريع أفتخر بها</h2>
-            
-            <div class="projects-stack">
-                <div class="project-item" onclick="navigateToProject(1)">
-                    <div class="project-card reveal">
-                        <div class="project-info">
-                            <span class="time-date">فيديو / إبداع</span>
-                            <h3>حملة رمضان الإبداعية</h3>
-                            <p style="color:var(--text-muted)">سلسلة محتوى حصدت أكثر من ٢٠٠ ألف مشاهدة.</p>
-                            <span style="margin-top:20px; font-weight:bold; color:var(--accent)">عرض التفاصيل ←</span>
-                        </div>
-                        <div class="project-media"><div>🌙</div></div>
-                    </div>
-                </div>
-                <div class="project-item" onclick="navigateToProject(2)">
-                    <div class="project-card reveal">
-                        <div class="project-info">
-                            <span class="time-date">بودكاست / هوية</span>
-                            <h3>هوية بودكاست صوتي</h3>
-                            <p style="color:var(--text-muted)">بناء هوية بصرية وصوتية متكاملة لبودكاست ناشئ.</p>
-                            <span style="margin-top:20px; font-weight:bold; color:var(--accent)">عرض التفاصيل ←</span>
-                        </div>
-                        <div class="project-media"><div>🎙️</div></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section container reveal">
-            <h2 class="section-title">المسار المهني</h2>
-            <div class="timeline">
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <span class="time-date">2023 – الآن</span>
-                    <h3>صانع محتوى حر (Freelancer)</h3>
-                    <p style="color:var(--text-muted)">العمل مع أكثر من ١٠ علامات تجارية لتطوير حضورهم الرقمي.</p>
-                </div>
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <span class="time-date">2022 – 2023</span>
-                    <h3>مساعد إبداعي</h3>
-                    <p style="color:var(--text-muted)">وكالة "أفق" للتسويق الرقمي - قسم صناعة الفيديو.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section container reveal">
-            <div class="contact-grid">
-                <div>
-                    <h2 class="section-title">هل نبدأ العمل؟</h2>
-                    <p style="color:var(--text-muted)">أنا متاح دائماً للمشاريع الجديدة والأفكار الملهمة.</p>
-                    <div style="margin-top: 40px; display: flex; gap: 20px;">
-                        <a href="#" class="btn-main" style="width:50px; height:50px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%">T</a>
-                        <a href="#" class="btn-main" style="width:50px; height:50px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%">I</a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <div class="input-group">
-                        <label>الاسم</label>
-                        <input type="text" placeholder="اكتب اسمك هنا">
-                    </div>
-                    <div class="input-group">
-                        <label>البريد الإلكتروني</label>
-                        <input type="email" placeholder="email@example.com">
-                    </div>
-                    <div class="input-group">
-                        <label>الرسالة</label>
-                        <textarea rows="4" placeholder="كيف يمكنني مساعدتك؟"></textarea>
-                    </div>
-                    <button class="btn-main">إرسال الطلب</button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <div id="project-page" class="container">
-        <header class="detail-header">
-            <a href="#home" class="back-link" onclick="closeProject()">→ العودة للرئيسية</a>
-            <h1 id="detail-title">اسم المشروع</h1>
-            <div id="detail-next" style="cursor:pointer; font-weight:bold; color:var(--accent)">المشروع التالي ←</div>
-        </header>
-
-        <div class="carousel" id="carousel">
-            <div class="carousel-btn prev" onclick="moveSlide(-1)">→</div>
-            <div class="carousel-btn next" onclick="moveSlide(1)">←</div>
-            <div id="slides-container"></div>
-        </div>
-
-        <div class="reveal active">
-            <span class="section-tag" id="detail-tag">الفئة</span>
-            <p id="detail-desc" style="font-size: 1.3rem; margin-top: 20px; color: var(--text-muted); max-width: 800px;"></p>
+    <div class="marquee">
+        <div class="marquee-content">
+            • TURNING EVERYDAY MOMENTS INTO ART • FLORAL CREATIONS • TURNING EVERYDAY MOMENTS INTO ART • FLORAL CREATIONS •
         </div>
     </div>
 
+    <section class="story-section">
+        <div class="story-content">
+            <div class="story-bubble">
+                <h2>قصتنا</h2>
+                <p>Borcelle هي وجهة لإعادة تعريف الجمال الزهري. نحن ندمج سحر الطبيعة مع التصميم الجريء. بتلات النيون، أزهار منتصف الليل، وتنسيقات تشعر وكأنها خرجت من حلم.</p>
+                <br>
+                <a href="#" class="btn-order">اقرأ المزيد</a>
+            </div>
+        </div>
+        <div class="story-image-container">
+            <img src="https://images.unsplash.com/photo-1599110906818-0006767509d8?q=80&w=1000&auto=format&fit=crop" alt="Florist working">
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🌸</div>
+                <h3>متجر الزهور</h3>
+                <p>تشكيلة واسعة من الزهور النادرة واليومية.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>زهور المناسبات</h3>
+                <p>تنسيقات فنية مخصصة لحفلاتكم الخاصة.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>طلبات خاصة</h3>
+                <p>تصاميم حصرية مبنية على ذوقك الفريد.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us">
+        <div class="polaroid-container">
+            <div class="polaroid">
+                <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=1000&auto=format&fit=crop" alt="Bouquet">
+                <div class="polaroid-caption">Borcelle Style</div>
+            </div>
+        </div>
+        <div class="why-content">
+            <h2 style="font-size: 3.5rem; margin-bottom: 20px;">لماذا تختارنا؟</h2>
+            <ul style="list-style: none; line-height: 2;">
+                <li>✔️ تحويل المساحات العادية إلى تجارب ساحرة.</li>
+                <li>✔️ زهور طازجة ومستدامة من مزارعنا.</li>
+                <li>✔️ دعم الفن المحلي والإبداع الرقمي.</li>
+            </ul>
+            <br>
+            <a href="#" class="btn-order" style="background: var(--dark-navy);">استكشف خدماتنا</a>
+        </div>
+    </section>
+
+    <div class="marquee" style="background: var(--dark-navy);">
+        <div class="marquee-content">
+            • NOW BOOKING 2026 EVENTS • ENQUIRE NOW TO SECURE YOUR DREAM FLORALS • NOW BOOKING 2026 EVENTS •
+        </div>
+    </div>
+
+    <div class="bottom-gallery">
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1507290439931-a861b5a38200?w=500&auto=format')"></div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1523694527370-176bc7ad0463?w=500&auto=format')"></div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500&auto=format')"></div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=500&auto=format')"></div>
+    </div>
+
+    <footer>
+        <h2 style="font-size: 3rem;">Borcelle</h2>
+        <p>© 2026 جميع الحقوق محفوظة - تصميم مستوحى من رحمة</p>
+    </footer>
+
     <script>
-        // --- 1. البيانات ---
-        const typewriterWords = ["صانع محتوى", "مبدع رقمي", "راوي قصص", "مصوّر لحظات"];
-        const projectsData = [
-            {
-                id: 1, title: "حملة رمضان الإبداعية", tag: "فيديو", 
-                desc: "مشروع استهدف تعزيز الهوية البصرية من خلال قصص قصيرة يومية حصدت تفاعلاً غير مسبوق في المنطقة العربية.",
-                images: ["#1a1a1a", "#2a2a2a", "#3a3a3a"]
-            },
-            {
-                id: 2, title: "هوية بودكاست صوتي", tag: "محتوى", 
-                desc: "بناء نظام بصري كامل يشمل الشعارات وتنسيقات السوشيال ميديا لبودكاست يتحدث عن ريادة الأعمال.",
-                images: ["#0D1117", "#161b22", "#1a1a1a"]
-            }
-        ];
-
-        // --- 2. Typewriter Effect ---
-        const typeEl = document.getElementById('typewriter');
-        let wordIdx = 0, charIdx = 0, isDeleting = false;
-
-        function type() {
-            const currentWord = typewriterWords[wordIdx];
-            typeEl.textContent = currentWord.substring(0, charIdx);
-            
-            if (!isDeleting && charIdx < currentWord.length) {
-                charIdx++;
-                setTimeout(type, 80);
-            } else if (isDeleting && charIdx > 0) {
-                charIdx--;
-                setTimeout(type, 40);
-            } else {
-                isDeleting = !isDeleting;
-                if (!isDeleting) wordIdx = (wordIdx + 1) % typewriterWords.length;
-                setTimeout(type, isDeleting ? 1500 : 500);
-            }
-        }
-
-        // --- 3. Intersection Observer (Animations) ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    // لبطاقات الـ Sticky
-                    if(entry.target.classList.contains('stack-card')) entry.target.classList.add('active-sticky');
+        // إضافة تأثير تفاعلي بسيط عند التمرير
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => {
+                const speed = 2;
+                const top = card.getBoundingClientRect().top;
+                if(top < window.innerHeight) {
+                    card.style.opacity = '1';
                 }
             });
-        }, { threshold: 0.15 });
-
-        document.querySelectorAll('.reveal, .stack-card').forEach(el => observer.observe(el));
-
-        // --- 4. SPA Routing & Project Details ---
-        let currentSlideIdx = 0;
-
-        function navigateToProject(id) {
-            const project = projectsData.find(p => p.id === id);
-            if(!project) return;
-
-            document.getElementById('main-page').style.display = 'none';
-            document.getElementById('project-page').style.display = 'block';
-            window.scrollTo(0,0);
-
-            // تعبئة البيانات
-            const titleEl = document.getElementById('detail-title');
-            titleEl.textContent = project.title;
-            // تأثير الأحرف
-            animateLetters(titleEl);
-
-            document.getElementById('detail-tag').textContent = project.tag;
-            document.getElementById('detail-desc').textContent = project.desc;
-
-            // بناء الكاروسيل
-            const container = document.getElementById('slides-container');
-            container.innerHTML = project.images.map((img, i) => `
-                <div class="slide ${i === 0 ? 'active' : ''}" style="background:${img}">
-                    صورة المشروع ${i + 1}
-                </div>
-            `).join('');
-            currentSlideIdx = 0;
-        }
-
-        function closeProject() {
-            document.getElementById('main-page').style.display = 'block';
-            document.getElementById('project-page').style.display = 'none';
-        }
-
-        function animateLetters(el) {
-            const text = el.textContent;
-            el.innerHTML = text.split('').map((char, i) => 
-                `<span class="letter" style="transition-delay: ${i * 40}ms">${char === ' ' ? '&nbsp;' : char}</span>`
-            ).join('');
-            setTimeout(() => el.classList.add('active'), 100);
-        }
-
-        function moveSlide(dir) {
-            const slides = document.querySelectorAll('.slide');
-            slides[currentSlideIdx].classList.remove('active');
-            currentSlideIdx = (currentSlideIdx + dir + slides.length) % slides.length;
-            slides[currentSlideIdx].classList.add('active');
-        }
-
-        // --- 5. Start Everything ---
-        window.onload = () => {
-            type();
-            // التعامل مع الـ Hash لتحديد الصفحة عند التحميل
-            if(window.location.hash.includes('project')) {
-                const id = parseInt(window.location.hash.split('-')[1]);
-                navigateToProject(id || 1);
-            }
-        };
+        });
     </script>
 </body>
 </html>

@@ -1,374 +1,437 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borcelle Florist | بورتفوليو احترافي</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Syne:wght@400..800&display=swap" rel="stylesheet">
-    
+    <title>Rahma | Content & Design Strategist</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;600&family=Pinyon+Script&display=swap');
+
         :root {
-            --primary-pink: #ff00ff;
-            --dark-navy: #120d2d;
-            --accent-green: #00ff66;
-            --soft-purple: #e0d7ff;
-            --white: #ffffff;
-            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --bg-color: #f5f2eb;
+            --text-color: #1a1a1a;
+            --pink-accent: #f4a2c2;
+            --border-color: #1a1a1a;
+            
+            --font-heading: 'DM Serif Display', serif;
+            --font-script: 'Pinyon Script', cursive;
+            --font-body: 'Epilogue', sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Syne', sans-serif;
         }
 
         body {
-            background-color: var(--soft-purple);
-            color: var(--dark-navy);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
             overflow-x: hidden;
+            line-height: 1.5;
         }
 
-        h1, h2, .logo {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-weight: 800;
-        }
-
-        /* --- 1. Header & Hero Section --- */
+        /* --- 1. Header Navigation --- */
         header {
-            background-color: var(--dark-navy);
-            background-image: url('https://www.transparenttextures.com/patterns/floral-paper.png'); /* Pattern simulation */
-            padding: 20px 5%;
-            color: white;
-        }
-
-        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
+            padding: 1.5rem 4rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .nav-links {
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            font-family: var(--font-script);
+            font-size: 2rem;
+            text-transform: none;
+            color: var(--pink-accent);
+        }
+
+        nav ul {
             display: flex;
-            gap: 25px;
             list-style: none;
+            gap: 2rem;
         }
 
-        .nav-links a {
-            color: white;
+        nav a {
             text-decoration: none;
-            font-size: 0.9rem;
+            color: var(--text-color);
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .btn-order {
-            background: var(--primary-pink);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.8rem;
-            transition: var(--transition);
-        }
-
+        /* --- 2. Hero Section --- */
         .hero {
-            text-align: center;
-            padding: 60px 0;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: 8rem;
-            margin-bottom: 10px;
-            color: var(--soft-purple);
-            letter-spacing: -2px;
-        }
-
-        .hero p {
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        /* --- 2. Marquee (التيكر المتحرك) --- */
-        .marquee {
-            background: var(--primary-pink);
-            color: white;
-            padding: 15px 0;
-            white-space: nowrap;
-            overflow: hidden;
-            display: flex;
-            border-top: 2px solid var(--dark-navy);
-            border-bottom: 2px solid var(--dark-navy);
-        }
-
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 20s linear infinite;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 1.2rem;
-        }
-
-        @keyframes marquee {
-            from { transform: translateX(100%); }
-            to { transform: translateX(-100%); }
-        }
-
-        /* --- 3. Our Story Section --- */
-        .story-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            padding: 100px 10%;
-            align-items: center;
-            gap: 50px;
-            background: #f4f0ff;
-        }
-
-        .story-content {
-            position: relative;
-        }
-
-        .story-bubble {
-            background: var(--soft-purple);
-            padding: 40px;
-            border-radius: 60% 40% 70% 30% / 40% 50% 50% 60%;
-            border: 2px solid var(--dark-navy);
-            text-align: center;
-        }
-
-        .story-bubble h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--dark-navy);
-        }
-
-        .story-image-container {
-            position: relative;
-            border: 3px solid var(--dark-navy);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 15px 15px 0px var(--primary-pink);
-        }
-
-        .story-image-container img {
-            width: 100%;
-            display: block;
-            filter: saturate(1.2);
-        }
-
-        /* --- 4. Services Grid --- */
-        .services-section {
-            padding: 80px 5%;
-            background: var(--soft-purple);
-            text-align: center;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .service-card {
-            background: white;
-            border: 2px solid var(--dark-navy);
-            padding: 40px;
-            border-radius: 15px;
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: 10px 10px 0px var(--accent-green);
-        }
-
-        .service-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-
-        /* --- 5. Why Choose Us (Polaroid Style) --- */
-        .why-us {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 100px 10%;
-            background: #fff;
+            padding: 6rem 4rem;
+            gap: 4rem;
             align-items: center;
         }
 
-        .polaroid {
-            background: white;
-            padding: 15px 15px 60px 15px;
-            border: 1px solid #ddd;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transform: rotate(-3deg);
-            width: 80%;
+        .hero-image-wrapper {
+            position: relative;
         }
 
-        .polaroid img {
+        .hero-img {
             width: 100%;
-            height: 400px;
+            max-width: 400px;
+            aspect-ratio: 4/5;
             object-fit: cover;
+            border: 1px solid var(--border-color);
+            filter: grayscale(100%) contrast(1.1);
         }
 
-        .polaroid-caption {
-            font-family: 'Bricolage Grotesque';
-            text-align: center;
-            margin-top: 20px;
+        .hero-content {
+            position: relative;
+        }
+
+        .sticker {
+            position: absolute;
+            top: -40px;
+            left: -20px;
+            background-color: var(--pink-accent);
+            padding: 5px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            transform: rotate(-10deg);
+            font-family: var(--font-script);
             font-size: 1.5rem;
         }
 
-        /* --- 6. Footer Ticker & Bottom --- */
-        .bottom-gallery {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            height: 300px;
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
         }
 
-        .gallery-item {
-            background-size: cover;
-            background-position: center;
-            border: 1px solid var(--dark-navy);
+        .hero h1 .script-text {
+            font-family: var(--font-script);
+            color: var(--pink-accent);
+            font-size: 5.5rem;
+            font-weight: normal;
         }
 
-        footer {
-            background: var(--primary-pink);
-            color: white;
+        .hero p {
+            font-size: 0.9rem;
+            max-width: 400px;
+            margin-bottom: 2rem;
+            color: #4a4a4a;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--pink-accent);
+            color: var(--text-color);
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            font-style: italic;
+            box-shadow: 3px 3px 0px var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--border-color);
+        }
+
+        /* --- 3 & 5. Marquee Sections --- */
+        .marquee-container {
+            width: 100%;
+            background-color: var(--pink-accent);
+            padding: 10px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-content span {
+            margin: 0 20px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- 4. Recent Work Section --- */
+        .recent-work {
+            position: relative;
+            padding: 6rem 4rem;
+            min-height: 800px;
+        }
+
+        .gradient-blob {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--pink-accent) 0%, transparent 60%);
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .work-title-container {
+            position: relative;
+        }
+
+        .work-title-recent {
+            font-family: var(--font-heading);
+            font-size: 6rem;
+            margin-left: 2rem;
+        }
+
+        .work-title-work {
+            font-family: var(--font-script);
+            font-size: 7rem;
+            color: var(--text-color);
+            position: absolute;
+            top: 250px;
+            left: 45%;
+        }
+
+        .work-description {
+            position: absolute;
+            top: 150px;
+            left: 4rem;
+            width: 250px;
+            font-size: 0.85rem;
+            color: #4a4a4a;
+        }
+
+        .work-images {
+            position: relative;
+            margin-top: 5rem;
+        }
+
+        .img-box {
+            position: absolute;
+            border: 1px solid var(--border-color);
+            object-fit: cover;
+        }
+
+        .img-1 {
+            width: 300px;
+            height: 200px;
+            top: 50px;
+            left: 4rem;
+            filter: contrast(1.2) sepia(0.2);
+        }
+
+        .img-2 {
+            width: 250px;
+            height: 350px;
+            top: -100px;
+            right: 4rem;
+        }
+
+        .spinning-badge {
+            position: absolute;
+            top: 0;
+            right: 320px;
+            width: 120px;
+            height: 120px;
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .work-btn-container {
+            position: absolute;
+            bottom: -350px;
+            right: 25%;
             text-align: center;
-            padding: 50px;
-            border-top: 4px solid var(--dark-navy);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 4rem; }
-            .story-section, .why-us, .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .nav-links { display: none; }
+        .work-btn-container p {
+            max-width: 300px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
         }
+
+        /* --- 6. Contact Section --- */
+        .contact-section {
+            padding: 6rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-title h2 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            line-height: 1.1;
+        }
+
+        .contact-title .script-text {
+            font-family: var(--font-script);
+            color: var(--pink-accent);
+            font-size: 5rem;
+            display: block;
+            margin-top: -10px;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            font-family: var(--font-body);
+            outline: none;
+        }
+
+        .input-group input:focus {
+            background-color: rgba(244, 162, 194, 0.1);
+        }
+
     </style>
 </head>
 <body>
 
     <header>
+        <div class="logo">Rahma <span>Made</span> THIS</div>
         <nav>
-            <div class="logo">Borcelle Florist</div>
-            <ul class="nav-links">
-                <li><a href="#">قصتنا</a></li>
-                <li><a href="#">أعمالنا</a></li>
-                <li><a href="#">خدماتنا</a></li>
-                <li><a href="#">تواصل معنا</a></li>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
-            <a href="#" class="btn-order">اطلب الآن</a>
         </nav>
-
-        <section class="hero">
-            <p>Premium Florist</p>
-            <h1>Borcelle</h1>
-            <a href="#" class="btn-order" style="padding: 15px 40px; font-size: 1rem;">تسوق المجموعة</a>
-        </section>
     </header>
 
-    <div class="marquee">
+    <section class="hero">
+        <div class="hero-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600" alt="Professional Portrait" class="hero-img">
+        </div>
+        <div class="hero-content">
+            <div class="sticker">Hey You!</div>
+            <h1>Let's <span class="script-text">Solve</span> Your Needs, Creatively</h1>
+            <p>
+                Thanks for stopping by!<br><br>
+                My name is Rahma and I'm a Content and Design Strategist. I focus on research-informed workflows, advanced analytical planning, and creating interactive digital experiences. Working with diverse concepts makes me a great fit for your strategic needs.
+            </p>
+            <a href="#" class="btn">Learn more ➔</a>
+        </div>
+    </section>
+
+    <div class="marquee-container">
         <div class="marquee-content">
-            • TURNING EVERYDAY MOMENTS INTO ART • FLORAL CREATIONS • TURNING EVERYDAY MOMENTS INTO ART • FLORAL CREATIONS •
+            <span>Content Strategy ◉ Design Strategy ◉ Analytical Research ◉ Vibe Coding ◉</span>
+            <span>Content Strategy ◉ Design Strategy ◉ Analytical Research ◉ Vibe Coding ◉</span>
+            <span>Content Strategy ◉ Design Strategy ◉ Analytical Research ◉ Vibe Coding ◉</span>
         </div>
     </div>
 
-    <section class="story-section">
-        <div class="story-content">
-            <div class="story-bubble">
-                <h2>قصتنا</h2>
-                <p>Borcelle هي وجهة لإعادة تعريف الجمال الزهري. نحن ندمج سحر الطبيعة مع التصميم الجريء. بتلات النيون، أزهار منتصف الليل، وتنسيقات تشعر وكأنها خرجت من حلم.</p>
-                <br>
-                <a href="#" class="btn-order">اقرأ المزيد</a>
-            </div>
+    <section class="recent-work">
+        <div class="gradient-blob"></div>
+        
+        <div class="work-title-container">
+            <h2 class="work-title-recent">Recent</h2>
+            <p class="work-description">
+                I've worked on developing comprehensive strategies and research-informed interactive platforms. In that time, I've learned how to build robust architectures using advanced logic. Take a look at what I've been up to.
+            </p>
+            <h2 class="work-title-work">Work</h2>
         </div>
-        <div class="story-image-container">
-            <img src="https://images.unsplash.com/photo-1599110906818-0006767509d8?q=80&w=1000&auto=format&fit=crop" alt="Florist working">
+
+        <div class="work-images">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="Cyber Technology Strategy" class="img-box img-1">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" alt="Abstract Analytical Design" class="img-box img-2">
+            
+            <svg class="spinning-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path id="circlePath" fill="none" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+                <text font-family="'Epilogue', sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a">
+                    <textPath href="#circlePath" startOffset="0%">
+                        • VIEW PROJECT • VIEW PROJECT •
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+
+        <div class="work-btn-container">
+            <p>When I come home from work, I help clients build their strategic presence and analyze their digital footprints.</p>
+            <a href="#" class="btn">Check it out</a>
         </div>
     </section>
 
-    <section class="services-section">
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🌸</div>
-                <h3>متجر الزهور</h3>
-                <p>تشكيلة واسعة من الزهور النادرة واليومية.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🎨</div>
-                <h3>زهور المناسبات</h3>
-                <p>تنسيقات فنية مخصصة لحفلاتكم الخاصة.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">✨</div>
-                <h3>طلبات خاصة</h3>
-                <p>تصاميم حصرية مبنية على ذوقك الفريد.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="why-us">
-        <div class="polaroid-container">
-            <div class="polaroid">
-                <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=1000&auto=format&fit=crop" alt="Bouquet">
-                <div class="polaroid-caption">Borcelle Style</div>
-            </div>
-        </div>
-        <div class="why-content">
-            <h2 style="font-size: 3.5rem; margin-bottom: 20px;">لماذا تختارنا؟</h2>
-            <ul style="list-style: none; line-height: 2;">
-                <li>✔️ تحويل المساحات العادية إلى تجارب ساحرة.</li>
-                <li>✔️ زهور طازجة ومستدامة من مزارعنا.</li>
-                <li>✔️ دعم الفن المحلي والإبداع الرقمي.</li>
-            </ul>
-            <br>
-            <a href="#" class="btn-order" style="background: var(--dark-navy);">استكشف خدماتنا</a>
-        </div>
-    </section>
-
-    <div class="marquee" style="background: var(--dark-navy);">
+    <div class="marquee-container">
         <div class="marquee-content">
-            • NOW BOOKING 2026 EVENTS • ENQUIRE NOW TO SECURE YOUR DREAM FLORALS • NOW BOOKING 2026 EVENTS •
+            <span>Content Strategy ◉ Design Strategy ◉ Analytical Research ◉ Vibe Coding ◉</span>
+            <span>Content Strategy ◉ Design Strategy ◉ Analytical Research ◉ Vibe Coding ◉</span>
+            <span>Content Strategy ◉ Design Strategy ◉ Analytical Research ◉ Vibe Coding ◉</span>
         </div>
     </div>
 
-    <div class="bottom-gallery">
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1507290439931-a861b5a38200?w=500&auto=format')"></div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1523694527370-176bc7ad0463?w=500&auto=format')"></div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500&auto=format')"></div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=500&auto=format')"></div>
-    </div>
+    <section class="contact-section">
+        <div class="contact-title">
+            <h2>Nice To <span class="script-text">Meet</span> You, Wherever You Are.</h2>
+        </div>
+        <div class="contact-form">
+            <form action="#">
+                <div class="input-group">
+                    <label>Name (required)</label>
+                    <div class="form-row">
+                        <input type="text" placeholder="First Name">
+                        <input type="text" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Email (required)</label>
+                    <input type="email" placeholder="hello@example.com">
+                </div>
+                <div class="input-group">
+                    <label>Inquiry</label>
+                    <input type="text" placeholder="How can I help you?">
+                </div>
+            </form>
+        </div>
+    </section>
 
-    <footer>
-        <h2 style="font-size: 3rem;">Borcelle</h2>
-        <p>© 2026 جميع الحقوق محفوظة - تصميم مستوحى من رحمة</p>
-    </footer>
-
-    <script>
-        // إضافة تأثير تفاعلي بسيط عند التمرير
-        window.addEventListener('scroll', () => {
-            const cards = document.querySelectorAll('.service-card');
-            cards.forEach(card => {
-                const speed = 2;
-                const top = card.getBoundingClientRect().top;
-                if(top < window.innerHeight) {
-                    card.style.opacity = '1';
-                }
-            });
-        });
-    </script>
 </body>
 </html>

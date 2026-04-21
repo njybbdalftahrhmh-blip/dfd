@@ -18,6 +18,10 @@
             --font-body: 'Epilogue', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -34,6 +38,10 @@
 
         /* --- 1. Header Navigation --- */
         header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--bg-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -67,6 +75,11 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--pink-accent);
         }
 
         /* --- 2. Hero Section --- */
@@ -76,6 +89,7 @@
             padding: 6rem 4rem;
             gap: 4rem;
             align-items: center;
+            min-height: 90vh;
         }
 
         .hero-image-wrapper {
@@ -84,7 +98,7 @@
 
         .hero-img {
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
             aspect-ratio: 4/5;
             object-fit: cover;
             border: 1px solid var(--border-color);
@@ -106,6 +120,7 @@
             transform: rotate(-10deg);
             font-family: var(--font-script);
             font-size: 1.5rem;
+            z-index: 2;
         }
 
         .hero h1 {
@@ -123,7 +138,7 @@
         }
 
         .hero p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             max-width: 400px;
             margin-bottom: 2rem;
             color: #4a4a4a;
@@ -140,6 +155,7 @@
             font-style: italic;
             box-shadow: 3px 3px 0px var(--border-color);
             transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -147,7 +163,7 @@
             box-shadow: 1px 1px 0px var(--border-color);
         }
 
-        /* --- 3 & 5. Marquee Sections --- */
+        /* --- Marquee --- */
         .marquee-container {
             width: 100%;
             background-color: var(--pink-accent);
@@ -174,160 +190,271 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* --- 4. Recent Work Section --- */
-        .recent-work {
-            position: relative;
+        /* --- 3. Services Section --- */
+        .services {
             padding: 6rem 4rem;
-            min-height: 800px;
+            background-color: var(--bg-color);
         }
 
-        .gradient-blob {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--pink-accent) 0%, transparent 60%);
-            filter: blur(40px);
-            z-index: -1;
-            opacity: 0.6;
-        }
-
-        .work-title-container {
-            position: relative;
-        }
-
-        .work-title-recent {
-            font-family: var(--font-heading);
-            font-size: 6rem;
-            margin-left: 2rem;
-        }
-
-        .work-title-work {
-            font-family: var(--font-script);
-            font-size: 7rem;
-            color: var(--text-color);
-            position: absolute;
-            top: 250px;
-            left: 45%;
-        }
-
-        .work-description {
-            position: absolute;
-            top: 150px;
-            left: 4rem;
-            width: 250px;
-            font-size: 0.85rem;
-            color: #4a4a4a;
-        }
-
-        .work-images {
-            position: relative;
-            margin-top: 5rem;
-        }
-
-        .img-box {
-            position: absolute;
-            border: 1px solid var(--border-color);
-            object-fit: cover;
-        }
-
-        .img-1 {
-            width: 300px;
-            height: 200px;
-            top: 50px;
-            left: 4rem;
-            filter: contrast(1.2) sepia(0.2);
-        }
-
-        .img-2 {
-            width: 250px;
-            height: 350px;
-            top: -100px;
-            right: 4rem;
-        }
-
-        .spinning-badge {
-            position: absolute;
-            top: 0;
-            right: 320px;
-            width: 120px;
-            height: 120px;
-            animation: spin 10s linear infinite;
-        }
-
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
-        .work-btn-container {
-            position: absolute;
-            bottom: -350px;
-            right: 25%;
+        .services-header {
             text-align: center;
+            margin-bottom: 4rem;
         }
 
-        .work-btn-container p {
-            max-width: 300px;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        /* --- 6. Contact Section --- */
-        .contact-section {
-            padding: 6rem 4rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-title h2 {
+        .services-header h2 {
             font-family: var(--font-heading);
             font-size: 4rem;
-            line-height: 1.1;
         }
 
-        .contact-title .script-text {
+        .services-header .script-text {
             font-family: var(--font-script);
             color: var(--pink-accent);
             font-size: 5rem;
             display: block;
-            margin-top: -10px;
+            margin-top: -20px;
         }
 
-        .contact-form form {
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid var(--border-color);
+        }
+
+        .service-card {
+            padding: 3rem;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s;
+        }
+
+        .service-card:hover {
+            background-color: rgba(244, 162, 194, 0.1);
+        }
+
+        .service-card h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: #4a4a4a;
+        }
+
+        /* --- 4. Portfolio / Recent Work --- */
+        .recent-work {
+            position: relative;
+            padding: 6rem 4rem;
+            background-color: var(--bg-color);
+        }
+
+        .work-title-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+
+        .work-title-container h2 {
+            font-family: var(--font-heading);
+            font-size: 5rem;
+            line-height: 0.9;
+        }
+
+        .work-title-container .script-text {
+            font-family: var(--font-script);
+            font-size: 6rem;
+            color: var(--pink-accent);
+            margin-left: -20px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .project-item {
+            position: relative;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            group: hover;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: grayscale(80%);
+        }
+
+        .project-item:hover .project-img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(244, 162, 194, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-overlay h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-overlay span {
+            font-family: var(--font-script);
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+
+        /* --- Modals --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--bg-color);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 4rem;
+        }
+
+        .modal-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+            background: #fff;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 10px 10px 0px var(--pink-accent);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            font-family: var(--font-body);
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-color);
+        }
+
+        .modal-body h2 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-body .tags {
+            font-family: var(--font-script);
+            color: var(--pink-accent);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .modal-body p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- 5. Contact / Social Links --- */
+        .contact-section {
+            padding: 8rem 4rem;
+            text-align: center;
+            background-color: var(--pink-accent);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contact-section h2 {
+            font-family: var(--font-heading);
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .contact-section .script-text {
+            font-family: var(--font-script);
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 3rem;
+        }
+
+        .social-links {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            align-items: center;
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 0.75rem;
-            margin-bottom: 0.5rem;
+        .social-links a {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            color: var(--text-color);
+            text-decoration: none;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.3s;
         }
 
-        .input-group input {
+        .social-links a::after {
+            content: '';
+            position: absolute;
             width: 100%;
-            padding: 12px 20px;
-            border-radius: 50px;
-            border: 1px solid var(--border-color);
-            background: transparent;
-            font-family: var(--font-body);
-            outline: none;
+            height: 2px;
+            bottom: 10px;
+            left: 0;
+            background-color: var(--text-color);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
         }
 
-        .input-group input:focus {
-            background-color: rgba(244, 162, 194, 0.1);
+        .social-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
         }
 
     </style>
@@ -338,17 +465,17 @@
         <div class="logo">Rahma <span>Made</span> THIS</div>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="hero-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600" alt="Professional Portrait" class="hero-img">
+            <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&q=80&w=600" alt="Professional Portrait" class="hero-img">
         </div>
         <div class="hero-content">
             <div class="sticker">Hey You!</div>
@@ -357,7 +484,7 @@
                 Thanks for stopping by!<br><br>
                 My name is Rahma and I'm a Content and Design Strategist. I focus on research-informed workflows, advanced analytical planning, and creating interactive digital experiences. Working with diverse concepts makes me a great fit for your strategic needs.
             </p>
-            <a href="#" class="btn">Learn more ➔</a>
+            <a href="#portfolio" class="btn">View My Work ➔</a>
         </div>
     </section>
 
@@ -369,69 +496,150 @@
         </div>
     </div>
 
-    <section class="recent-work">
-        <div class="gradient-blob"></div>
-        
+    <section id="services" class="services">
+        <div class="services-header">
+            <h2>What I <span class="script-text">Do</span></h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Research-Informed Strategy</h3>
+                <p>Developing deep, analytical architectures for digital projects. I move beyond surface-level visuals to build workflows grounded in scholarly research and robust planning.</p>
+            </div>
+            <div class="service-card">
+                <h3>Prompt Engineering & LLMs</h3>
+                <p>Architecting RAG pipelines and structuring logic for advanced AI models. Crafting precise prompt ecosystems that yield highly specific and diverse outputs.</p>
+            </div>
+            <div class="service-card">
+                <h3>Vibe Coding</h3>
+                <p>Executing high-end interactive web design and neo-retro digital experiences. Blending code with aesthetic intuition to create memorable digital environments.</p>
+            </div>
+            <div class="service-card">
+                <h3>Brand Content Architecture</h3>
+                <p>Structuring digital narratives across platforms. Specializing in visual content strategies, including upcoming exclusive portfolio curation and Pinterest-driven growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="recent-work">
         <div class="work-title-container">
-            <h2 class="work-title-recent">Recent</h2>
-            <p class="work-description">
-                I've worked on developing comprehensive strategies and research-informed interactive platforms. In that time, I've learned how to build robust architectures using advanced logic. Take a look at what I've been up to.
-            </p>
-            <h2 class="work-title-work">Work</h2>
+            <div>
+                <h2>Recent</h2>
+                <span class="script-text">Work & Research</span>
+            </div>
+            <p style="max-width: 300px; text-align: right; font-size: 0.9rem;">Click on any project to explore the full strategic breakdown and interactive elements.</p>
         </div>
 
-        <div class="work-images">
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="Cyber Technology Strategy" class="img-box img-1">
-            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" alt="Abstract Analytical Design" class="img-box img-2">
-            
-            <svg class="spinning-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path id="circlePath" fill="none" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
-                <text font-family="'Epilogue', sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a">
-                    <textPath href="#circlePath" startOffset="0%">
-                        • VIEW PROJECT • VIEW PROJECT •
-                    </textPath>
-                </text>
-            </svg>
-        </div>
-
-        <div class="work-btn-container">
-            <p>When I come home from work, I help clients build their strategic presence and analyze their digital footprints.</p>
-            <a href="#" class="btn">Check it out</a>
+        <div class="portfolio-grid">
+            <div class="project-item" onclick="openModal('modal1')">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="Cyber Technology Strategy" class="project-img">
+                <div class="project-overlay">
+                    <h3>LLM Data Pipeline</h3>
+                    <span>View Project</span>
+                </div>
+            </div>
+            <div class="project-item" onclick="openModal('modal2')">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" alt="Abstract Analytical Design" class="project-img">
+                <div class="project-overlay">
+                    <h3>Neo-Retro Archive</h3>
+                    <span>View Project</span>
+                </div>
+            </div>
+            <div class="project-item" onclick="openModal('modal3')">
+                <img src="https://images.unsplash.com/photo-1574717024453-354056a3df3c?auto=format&fit=crop&q=80&w=600" alt="Cinematic Analysis" class="project-img">
+                <div class="project-overlay">
+                    <h3>Cinematic Narratives</h3>
+                    <span>View Project</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <div class="marquee-container">
         <div class="marquee-content">
-            <span>Content Strategy ◉ Design Strategy ◉ Analytical Research ◉ Vibe Coding ◉</span>
-            <span>Content Strategy ◉ Design Strategy ◉ Analytical Research ◉ Vibe Coding ◉</span>
-            <span>Content Strategy ◉ Design Strategy ◉ Analytical Research ◉ Vibe Coding ◉</span>
+            <span>Let's Build Together ◉ Let's Build Together ◉ Let's Build Together ◉</span>
+            <span>Let's Build Together ◉ Let's Build Together ◉ Let's Build Together ◉</span>
+            <span>Let's Build Together ◉ Let's Build Together ◉ Let's Build Together ◉</span>
         </div>
     </div>
 
-    <section class="contact-section">
-        <div class="contact-title">
-            <h2>Nice To <span class="script-text">Meet</span> You, Wherever You Are.</h2>
-        </div>
-        <div class="contact-form">
-            <form action="#">
-                <div class="input-group">
-                    <label>Name (required)</label>
-                    <div class="form-row">
-                        <input type="text" placeholder="First Name">
-                        <input type="text" placeholder="Last Name">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label>Email (required)</label>
-                    <input type="email" placeholder="hello@example.com">
-                </div>
-                <div class="input-group">
-                    <label>Inquiry</label>
-                    <input type="text" placeholder="How can I help you?">
-                </div>
-            </form>
+    <section id="contact" class="contact-section">
+        <h2>Drop a <span class="script-text">Line</span></h2>
+        
+        <div class="social-links">
+            <a href="#" target="_blank">Pinterest</a>
+            <a href="#" target="_blank">GitHub</a>
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="mailto:hello@example.com">Email Me</a>
         </div>
     </section>
 
+    <footer>
+        <p>© 2026 Rahma Content & Design. All rights reserved.</p>
+    </footer>
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal1')">×</button>
+            <div class="modal-body">
+                <h2>LLM Data Pipeline Architecture</h2>
+                <div class="tags">Prompt Engineering • RAG • Strategy</div>
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" alt="Project 1">
+                <p>This project focused on establishing a Retrieval-Augmented Generation (RAG) pipeline for an academic database. The goal was to train the model to pull from diverse, scholarly, and non-mainstream perspectives.</p>
+                <p>My role involved deep analytical research, mapping out the logic framework, and executing the prompt engineering required to ensure the AI delivered nuanced and accurate outputs.</p>
+                <br>
+                <a href="#" class="btn">View Live Repository</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal2')">×</button>
+            <div class="modal-body">
+                <h2>Neo-Retro Digital Archive</h2>
+                <div class="tags">Vibe Coding • Y2K Aesthetic • Web Deployment</div>
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000" alt="Project 2">
+                <p>An interactive portfolio built using pure HTML, CSS, and JS, deployed fully on GitHub Pages. This project acts as a digital playground exploring the intersection of modern grid systems and Y2K aesthetic sensibilities.</p>
+                <p>The interface relies heavily on CSS variables, custom typography pairings, and carefully orchestrated layout shifts that challenge conventional symmetrical web design.</p>
+                <br>
+                <a href="#" class="btn">Visit Live Site</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal3')">×</button>
+            <div class="modal-body">
+                <h2>Cinematic Narrative Analysis</h2>
+                <div class="tags">Video Editing • Content Strategy • Narrative Duality</div>
+                <img src="https://images.unsplash.com/photo-1574717024453-354056a3df3c?auto=format&fit=crop&q=80&w=1000" alt="Project 3">
+                <p>A comprehensive strategic breakdown of psychological duality in modern cinema. This project involved deep analytical media consumption translated into an engaging video essay format.</p>
+                <p>Using tools like DaVinci Resolve, the editing process was meticulously optimized for narrative pacing, integrating multi-layered visual storytelling techniques with scholarly research findings.</p>
+                <br>
+                <a href="#" class="btn">Watch Full Video</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden'; // تمنع التمرير في الخلفية
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto'; // تعيد التمرير في الخلفية
+        }
+
+        // إغلاق النافذة المنبثقة عند النقر خارج المحتوى
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
 </body>
 </html>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahma | Content & Design Strategist</title>
+    <title>RAHMA // Content & Design Strategist</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -13,304 +13,281 @@
 
     <style>
         :root {
-            --bg: #EAE3D2;
-            --primary: #CC3F2B; /* Motown Red/Orange */
-            --secondary: #F4A261;
-            --black: #1a1a1a;
-            --white: #F9F9F9;
-            --border: 2px solid var(--black);
+            --paper: #F4F1DE;
+            --accent: #C84B31;
+            --black: #121212;
+            --white: #FFFFFF;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
-        /* Custom Cursor for that "Vibe" feel */
-        #cursor {
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            border: 2px solid var(--black);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg);
-            font-family: 'Public Sans', sans-serif;
-            color: var(--black);
-            overflow-x: hidden;
-        }
-
-        /* Grainy Overlay Texture */
+        /* 1. THE ARCHIVE TEXTURE (SVG GRAIN) */
         body::before {
             content: "";
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.05;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Cfilter id='noiseFilter'%3%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3%3C/filter%3%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3%3C/svg%3%3E");
+            opacity: 0.04;
             pointer-events: none;
-            z-index: 999;
+            z-index: 1000;
         }
 
-        /* --- NAVIGATION --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 5%;
-            border-bottom: var(--border);
-            background: var(--bg);
-            position: sticky;
-            top: 0; z-index: 100;
-        }
-
-        .brand { font-family: 'Archivo Black', sans-serif; font-size: 1.8rem; text-transform: lowercase; color: var(--primary); }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { text-decoration: none; color: var(--black); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-bottom: var(--border);
+        body {
+            background-color: var(--paper);
+            color: var(--black);
+            overflow-x: hidden;
+            selection-background: var(--accent);
+            selection-color: var(--white);
         }
 
-        .hero-text {
-            padding: 10%;
+        /* 2. CUSTOM INTERACTIVE CURSOR */
+        .cursor-follower {
+            position: fixed;
+            width: 40px; height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-mono); font-size: 8px; color: white;
+            opacity: 0; transition: opacity 0.3s;
+        }
+
+        /* 3. ASYMMETRIC HEADER */
+        nav {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            border-bottom: 1.5px solid var(--black);
+            background: var(--paper);
+            position: sticky; top: 0; z-index: 900;
+        }
+
+        .nav-logo { font-family: var(--font-display); font-size: 2.5rem; letter-spacing: -1px; color: var(--black); }
+        .nav-meta { margin-left: auto; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; }
+
+        /* 4. HERO SECTION: THE "EDITORIAL" LAYOUT */
+        .hero {
+            position: relative;
+            min-height: 120vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            border-right: var(--border);
+            padding: 5%;
+            overflow: hidden;
         }
 
-        .hero-text h1 {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 0.9;
-            text-transform: uppercase;
-            margin-bottom: 20px;
+        .hero-title-container { position: relative; z-index: 10; }
+        
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(5rem, 18vw, 15rem);
+            line-height: 0.85;
+            color: var(--black);
+            pointer-events: none;
         }
 
-        .hero-image {
-            background: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=2070&auto=format&fit=crop') center/cover;
-            filter: grayscale(1) contrast(1.2);
-            position: relative;
-        }
+        .hero-title span { display: block; overflow: hidden; }
+        .hero-title em { font-family: var(--font-serif); font-style: italic; color: var(--accent); font-size: 0.8em; margin-left: -20px; }
 
-        /* Floating UI Elements from reference */
-        .badge {
+        .hero-image-box {
             position: absolute;
-            background: var(--secondary);
-            border: var(--border);
-            padding: 15px;
-            font-family: 'Space Mono', monospace;
-            box-shadow: 8px 8px 0px var(--black);
-            max-width: 200px;
+            right: 5%; top: 20%;
+            width: 35%; height: 60vh;
+            background: url('https://images.unsplash.com/photo-1554177255-61502b352de3?q=80&w=2070&auto=format&fit=crop') center/cover;
+            border: 1.5px solid var(--black);
+            filter: grayscale(1) sepia(0.2);
+            z-index: 5;
+            box-shadow: 20px 20px 0px var(--accent);
         }
 
-        /* --- CONTENT SECTION --- */
-        .section-header {
-            padding: 60px 5%;
+        /* 5. THE "DIVE" SECTION (Horizontal Scroll Effect) */
+        .scroller-section {
             background: var(--black);
-            color: var(--bg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            color: var(--paper);
+            padding: 100px 0;
+            margin-top: -10vh;
         }
 
-        .marquee-container {
-            border-bottom: var(--border);
-            overflow: hidden;
+        .ticker {
+            border-top: 1px solid rgba(244, 241, 222, 0.2);
+            border-bottom: 1px solid rgba(244, 241, 222, 0.2);
             padding: 20px 0;
-            background: var(--primary);
-        }
-
-        .marquee-inner {
-            display: flex;
-            white-space: nowrap;
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 4rem;
-            color: var(--white);
-            gap: 50px;
-        }
-
-        /* --- WORK GRID --- */
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .work-item {
-            border-right: var(--border);
-            border-bottom: var(--border);
-            padding: 60px;
-            transition: background 0.4s ease;
-            position: relative;
             overflow: hidden;
+            display: flex;
         }
 
-        .work-item:hover { background: var(--secondary); }
-        .work-item:nth-child(even) { border-right: none; }
-
-        .work-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border: var(--border);
-            margin-top: 30px;
-            filter: sepia(0.3);
+        .ticker-inner {
+            display: flex; white-space: nowrap;
+            font-family: var(--font-display);
+            font-size: 5rem;
+            animation: ticker 30s linear infinite;
         }
 
-        .btn-waitlist {
-            background: var(--primary);
-            color: white;
-            padding: 15px 40px;
-            border: var(--border);
-            font-family: 'Archivo Black', sans-serif;
-            text-transform: uppercase;
-            cursor: pointer;
-            box-shadow: 6px 6px 0px var(--black);
-            transition: 0.2s;
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        .btn-waitlist:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0px var(--black); }
+        /* 6. CONTENT CARDS (The Archive) */
+        .archive-grid {
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
 
-        /* Mobile Adjustments */
+        .archive-card {
+            grid-column: span 6;
+            border: 1px solid var(--black);
+            padding: 40px;
+            background: var(--white);
+            position: relative;
+            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .archive-card:nth-child(2) { grid-column: 8 / span 5; margin-top: 100px; }
+        .archive-card:hover { transform: translateY(-10px); background: var(--accent); color: white; }
+
+        .archive-card h3 { font-family: var(--font-display); font-size: 3rem; margin-bottom: 15px; }
+        .archive-card p { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.4; opacity: 0.8; }
+
+        /* Mobile Utility */
         @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; height: auto; }
-            .hero-text { border-right: none; border-bottom: var(--border); padding: 60px 5%; }
-            .hero-image { height: 400px; }
-            .work-grid { grid-template-columns: 1fr; }
-            .work-item:nth-child(even) { border-right: none; }
+            .hero-image-box { display: none; }
+            .hero-title { font-size: 5rem; }
+            .archive-card { grid-column: span 12 !important; margin-top: 0 !important; }
         }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
+    <div class="cursor-follower">VIEW</div>
 
     <nav>
-        <div class="brand">rahma: strategist</div>
-        <div class="nav-links">
-            <a href="#">Projects</a>
-            <a href="#">Archive</a>
-            <a href="#">About</a>
+        <div class="nav-logo">RAHMA.STRATEGY</div>
+        <div class="nav-meta">
+            STATUS: ACTIVE // LOC: GLOBAL<br>
+            © 2026 ARCHIVE SYSTEM
         </div>
-        <button class="btn-waitlist" style="padding: 10px 20px; font-size: 0.7rem;">Join Waitlist</button>
     </nav>
 
-    <section class="hero">
-        <div class="hero-text">
-            <p class="tag" style="margin-bottom: 20px;">[ EST. 2026 ]</p>
-            <h1 class="split-text">DIGITAL CONTENT ARCHIVE</h1>
-            <p style="font-family: 'Space Mono';">Building high-end interactive narratives through research-informed workflows.</p>
-        </div>
-        <div class="hero-image">
-            <div class="badge" style="top: 20%; left: -10%;">
-                YOUR ARCHIVE, REIMAGINED. →
+    <main>
+        <section class="hero">
+            <div class="hero-title-container">
+                <h1 class="hero-title">
+                    <span>CONTENT</span>
+                    <span><em>Visual</em> ARCHIVE</span>
+                    <span>STRATEGY</span>
+                </h1>
+            </div>
+            <div class="hero-image-box"></div>
+            
+            <div style="position: absolute; bottom: 10%; left: 5%; font-family: var(--font-mono); font-size: 12px; max-width: 300px;">
+                [DATA_LOG_092] Building high-fidelity digital experiences through the lens of research and Neo-Retro aesthetics.
+            </div>
+        </section>
+
+        <div class="scroller-section">
+            <div class="ticker">
+                <div class="ticker-inner">
+                    <span>VIBE CODING • GSAP ORCHESTRATION • CONTENT ARCHITECTURE • DESIGN STRATEGY • </span>
+                    <span>VIBE CODING • GSAP ORCHESTRATION • CONTENT ARCHITECTURE • DESIGN STRATEGY • </span>
+                </div>
             </div>
         </div>
-    </section>
 
-    <div class="marquee-container">
-        <div class="marquee-inner">
-            <span>VIBE CODING ✦ CONTENT STRATEGY ✦ DESIGN ANALYTICS ✦ VIBE CODING ✦ CONTENT STRATEGY ✦ </span>
-            <span>VIBE CODING ✦ CONTENT STRATEGY ✦ DESIGN ANALYTICS ✦ VIBE CODING ✦ CONTENT STRATEGY ✦ </span>
-        </div>
-    </div>
+        <section class="archive-grid">
+            <div class="archive-card reveal">
+                <span style="font-family: var(--font-mono); font-size: 10px;">PROJ_01</span>
+                <h3>MOTOWN REVIVAL</h3>
+                <p>A digital deep-dive into the sonic textures of the 60s, reimagined for the modern web interface.</p>
+            </div>
 
-    <section class="work-grid">
-        <div class="work-item">
-            <span class="tag">STRATEGY / 01</span>
-            <h2>Motown Digital Library</h2>
-            <p>Creating a seamless UX for historical media archives using modern RAG pipelines.</p>
-            <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070&auto=format&fit=crop" alt="Work">
-        </div>
-        <div class="work-item">
-            <span class="tag">DESIGN / 02</span>
-            <h2>Y2K Aesthetic Engine</h2>
-            <p>Generative UI components that respond to user movement and device orientation.</p>
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" alt="Work">
-        </div>
-    </section>
+            <div class="archive-card reveal">
+                <span style="font-family: var(--font-mono); font-size: 10px;">PROJ_02</span>
+                <h3>NEO-RETRO UI</h3>
+                <p>Exploring the intersection of brutalist architecture and responsive mobile design systems.</p>
+            </div>
+        </section>
+    </main>
 
-    <footer style="padding: 100px 5%; background: var(--black); color: var(--bg); text-align: center;">
-        <h2 style="font-family: 'Archivo Black'; font-size: 3rem;">LET'S WORK.</h2>
-        <p style="margin-top: 20px; font-family: 'Space Mono';">rahma@content.strategist</p>
+    <footer style="padding: 100px 5%; border-top: 1px solid var(--black); text-align: center; font-family: var(--font-display); font-size: 10vw;">
+        GET IN TOUCH
     </footer>
 
     <script>
-        // 1. Smooth Scrolling (Lenis)
-        const lenis = new Lenis();
+        // 1. LENIS SMOOTH SCROLL (High-End Performance)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        });
         function raf(time) {
             lenis.raf(time);
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
 
-        // 2. Custom Cursor Movement
-        const cursor = document.querySelector("#cursor");
-        window.addEventListener("mousemove", (e) => {
+        // 2. CURSOR FOLLOWER
+        const cursor = document.querySelector('.cursor-follower');
+        document.addEventListener('mousemove', e => {
             gsap.to(cursor, {
-                x: e.clientX - 10,
-                y: e.clientY - 10,
-                duration: 0.3,
+                x: e.clientX,
+                y: e.clientY,
+                opacity: 1,
+                duration: 0.5,
                 ease: "power2.out"
             });
         });
 
-        // 3. Hero Text Entrance (Split Animation)
-        gsap.from(".hero-text h1", {
-            y: 100,
-            opacity: 0,
-            duration: 1.2,
+        // 3. REVEAL ANIMATIONS (Clipping Mask Effect)
+        gsap.registerPlugin(ScrollTrigger);
+
+        const titles = document.querySelectorAll('.hero-title span');
+        gsap.from(titles, {
+            y: 200,
+            skewY: 10,
+            duration: 1.5,
+            stagger: 0.1,
             ease: "power4.out",
-            delay: 0.5
+            delay: 0.2
         });
 
-        // 4. Parallax Image Effect
-        gsap.to(".hero-image", {
-            scrollTrigger: {
-                trigger: ".hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            },
-            backgroundPosition: "50% 100%",
-            ease: "none"
+        gsap.from(".hero-image-box", {
+            scale: 1.5,
+            opacity: 0,
+            duration: 2,
+            ease: "expo.out"
         });
 
-        // 5. Infinite Marquee Speed Change on Scroll
-        let marquee = gsap.to(".marquee-inner", {
-            xPercent: -50,
-            repeat: -1,
-            duration: 10,
-            ease: "none"
-        });
-
-        gsap.to(marquee, {
-            scrollTrigger: {
-                trigger: ".marquee-container",
-                scrub: 0.5
-            },
-            timeScale: 3
-        });
-
-        // 6. Work Items Reveal
-        gsap.utils.toArray(".work-item").forEach(item => {
-            gsap.from(item, {
+        // 4. PARALLAX ARCHIVE
+        gsap.utils.toArray(".reveal").forEach((card) => {
+            gsap.from(card, {
                 scrollTrigger: {
-                    trigger: item,
+                    trigger: card,
                     start: "top 90%",
+                    end: "top 40%",
+                    scrub: 1
                 },
-                y: 50,
+                y: 100,
                 opacity: 0,
-                duration: 1,
-                ease: "expo.out"
+                rotate: -2
+            });
+        });
+
+        // 5. HOVER SCALING
+        document.querySelectorAll('.archive-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 2, duration: 0.3 });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, duration: 0.3 });
             });
         });
     </script>
